@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Work\\CwaFacilityManager\\sources\\cwa-facilitymanager-web\\CWA.FacilityManager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D4E67C5B-6CCE-0CC8-B5DE-59F48E2C5AC5}|CWA.FacilityManager.Server\\CWA.FacilityManager.Server.csproj|c:\\work\\cwafacilitymanager\\sources\\cwa-facilitymanager-web\\cwa.facilitymanager\\cwa.facilitymanager.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{D4E67C5B-6CCE-0CC8-B5DE-59F48E2C5AC5}|CWA.FacilityManager.Server\\CWA.FacilityManager.Server.csproj|solutionrelative:cwa.facilitymanager.server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81DDED9D-158B-E303-5F62-77A2896D2A5A}|docker-compose\\docker-compose.dcproj|c:\\work\\cwafacilitymanager\\sources\\cwa-facilitymanager-web\\cwa.facilitymanager\\docker-compose\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{81DDED9D-158B-E303-5F62-77A2896D2A5A}|docker-compose\\docker-compose.dcproj|solutionrelative:docker-compose\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Work\\CwaFacilityManager\\sources\\cwa-facilitymanager-web\\CWA.FacilityManager\\CWA.FacilityManager.Server\\appsettings.json",
+              "RelativeDocumentMoniker": "CWA.FacilityManager.Server\\appsettings.json",
+              "ToolTip": "C:\\Work\\CwaFacilityManager\\sources\\cwa-facilitymanager-web\\CWA.FacilityManager\\CWA.FacilityManager.Server\\appsettings.json",
+              "RelativeToolTip": "CWA.FacilityManager.Server\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-08T15:39:24.509Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\Work\\CwaFacilityManager\\sources\\cwa-facilitymanager-web\\CWA.FacilityManager\\docker-compose\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker-compose\\docker-compose.yml",
+              "ToolTip": "C:\\Work\\CwaFacilityManager\\sources\\cwa-facilitymanager-web\\CWA.FacilityManager\\docker-compose\\docker-compose.yml",
+              "RelativeToolTip": "docker-compose\\docker-compose.yml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2025-09-08T15:39:12.093Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
