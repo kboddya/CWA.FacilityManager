@@ -1,0 +1,65 @@
+@page "/Admin/Rooms"
+@using CWA.FacilityManager.Application.Services
+@using CWA.FacilityManager.Infrastructure.Contexts
+@using CWA.FacilityManager.Server.Components.Admin.Shared
+@layout AdminLayout
+@inject IRoomService RoomService
+@inject NavigationManager NavManager
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10">
+            <h1 class="mt-4">Room Management</h1>
+
+        </div>
+        <div class="col-lg-2">
+            <a class="btn btn-primary mt-4" href="/Admin/AddRoom">Add room</a>
+        </div>
+        <hr/>
+    </div>
+
+
+
+@if (rooms == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!rooms.Any())
+{
+    <p><em>No rooms found.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Count of seats</th>
+            <th>Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var room in rooms)
+        {
+            <tr>
+                <td>@room.Id</td>
+                <td>@room.CoutOfSeats</td>
+                <td>@room.Location</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+</div>
+
+@code {
+    private List<Room> rooms { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        rooms = await RoomService.GetAllRoomsAsync();
+    }
+
+}

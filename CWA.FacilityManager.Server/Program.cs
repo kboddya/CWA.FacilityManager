@@ -1,3 +1,4 @@
+using CWA.FacilityManager.Application.Services;
 using CWA.FacilityManager.Client.Pages;
 using CWA.FacilityManager.Domain.Models;
 using CWA.FacilityManager.Infrastructure.Contexts;
@@ -31,11 +32,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
+
+builder.Services.AddTransient<IRoomService, RoomService>();
 
 var app = builder.Build();
 
