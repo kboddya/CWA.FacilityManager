@@ -662,6 +662,10 @@
         }
       },
       "CWA.FacilityManager.Shared/1.0.0": {
+        "dependencies": {
+          "AutoMapper": "15.0.1",
+          "CWA.FacilityManager.Domain": "1.0.0"
+        },
         "runtime": {
           "CWA.FacilityManager.Shared.dll": {
             "assemblyVersion": "1.0.0.0",

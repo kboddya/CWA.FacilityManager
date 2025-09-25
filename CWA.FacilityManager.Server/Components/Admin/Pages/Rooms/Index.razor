@@ -14,7 +14,7 @@
 
         </div>
         <div class="col-lg-2">
-            <a class="btn btn-primary mt-4" href="/Admin/AddRoom">Add room</a>
+            <a class="btn btn-primary mt-4" href="/Admin/Rooms/AddRoom">Add room</a>
         </div>
         <hr/>
     </div>
@@ -34,18 +34,16 @@ else
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Count of seats</th>
             <th>Location</th>
+            <th>Count of seats</th>
         </tr>
         </thead>
         <tbody>
         @foreach (var room in rooms)
         {
             <tr>
-                <td>@room.Id</td>
+                <td><a href="/Admin/Rooms/RoomInfo?Id=@room.Id">@room.Location</a></td>
                 <td>@room.CoutOfSeats</td>
-                <td>@room.Location</td>
             </tr>
         }
         </tbody>

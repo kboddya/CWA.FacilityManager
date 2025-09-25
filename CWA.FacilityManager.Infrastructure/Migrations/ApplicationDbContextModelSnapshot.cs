@@ -93,7 +93,7 @@ namespace CWA.FacilityManager.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long>("CoutOfSeats")
+                    b.Property<int>("CoutOfSeats")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Description")

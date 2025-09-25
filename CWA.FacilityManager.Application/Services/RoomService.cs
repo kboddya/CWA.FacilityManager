@@ -51,12 +51,14 @@ public class RoomService(ApplicationDbContext context) : IRoomService
         var roomToUpdate = await _context.Rooms.FindAsync(id);
         if (roomToUpdate == null) return null;
         
-        var roomModel = _mapperFromRoomDboToRoom.Map<Room>(room);
-        roomModel.Id = id;
-
-        _context.Update(room);
+        roomToUpdate.Location = room.Location;
+        roomToUpdate.CoutOfSeats = room.CoutOfSeats;
+        roomToUpdate.ImageUrl = room.ImageUrl;
+        roomToUpdate.Description = room.Description;
+        
+        _context.Rooms.Entry(roomToUpdate).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-        return roomModel;
+        return roomToUpdate;
     }
 
     public async Task<bool> DeleteRoomAsync(Guid id)

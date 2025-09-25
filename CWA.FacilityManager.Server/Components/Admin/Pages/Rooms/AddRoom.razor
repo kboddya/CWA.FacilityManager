@@ -1,0 +1,48 @@
+@page "/Admin/Rooms/AddRoom"
+@using CWA.FacilityManager.Application.Services
+@using CWA.FacilityManager.Infrastructure.Dbos
+@using CWA.FacilityManager.Server.Components.Admin.Shared
+@layout AdminLayout
+@inject IRoomService RoomService
+@inject NavigationManager NavManager
+<PageTitle>Add Room</PageTitle>
+<div class="container">
+    <EditForm Model="Room" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="AddRoomHandler" FormName="addRoom">
+        <div class="form-floating mb-3">
+            <InputText @bind-Value="Room.Location" id="Room.Location" class="form-control" placeholder="Enter room location" />
+            <label for="Room.Location">Room Location</label>
+            <ValidationMessage For="() => Room.Location" class="text-danger" />
+        </div>
+        <div class="row">
+            <div class="form-floating md-3 mb-3 col-md-6">
+                <InputNumber min="0" @bind-Value="Room.CoutOfSeats" id="Room.CoutOfSeats" class="form-control" placeholder="Enter count of seats" />
+                <label for="Room.CoutOfSeats">Number of Seats</label>
+                <ValidationMessage For="() => Room.CoutOfSeats" class="text-danger" />
+            </div>
+            <div class="form-floating md-3 mb-3 col-md-6">
+                <InputText @bind-Value="Room.ImageUrl" id="Room.ImageUrl" class="form-control" placeholder="Enter image url"/>
+                <label for="Room.ImageUrl">Image URL</label>
+                <ValidationMessage For="() => Room.ImageUrl" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-floating md-12 mb-3">
+            <InputTextArea @bind-Value="Room.Description" id="Room.Description" class="form-control" style="height: 250px" placeholder="Enter description" />
+            <label for="Room.Description">Room Description</label>
+            <ValidationMessage For="() => Room.Description" class="text-danger" />
+        </div>
+        <button type="submit" class="btn btn-primary btn-success">Add Room</button>
+    </EditForm>
+</div>
+
+@code {
+    [SupplyParameterFromForm] public RoomDbo Room { get; set; } = new RoomDbo();
+    
+    private string ReturnUrl { get; set; }
+    
+    private async Task AddRoomHandler()
+    {
+        var result = await RoomService.CreateRoomAsync(Room);
+        ReturnUrl = result?.Id != null ? "/Admin/Rooms" : "/Admin/Rooms/AddRoom";
+        NavManager.NavigateTo(ReturnUrl);
+    }
+}

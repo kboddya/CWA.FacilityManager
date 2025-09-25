@@ -1,0 +1,118 @@
+@page "/Admin/Rooms/RoomInfo"
+@using AutoMapper
+@using CWA.FacilityManager.Application.Services
+@using CWA.FacilityManager.Infrastructure.Dbos
+@using CWA.FacilityManager.Server.Components.Admin.Shared
+@using Microsoft.Extensions.Logging.Abstractions
+
+@inject NavigationManager NavigationManager
+
+@inject IRoomService RoomService
+<PageTitle>@(Room != null ? Room.Location : "Room")</PageTitle>
+<div class="container">
+    <div class="row mt-4">
+        @if (Room != null)
+        {
+            <div class="col-md-8">
+                <div style="width: 100%; height: 850px;">
+                    <img src="@Room.ImageUrl" style="height: 100%; width: 100%; margin-top: 10px; border-radius: 12px"/>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <b>Location: </b> @Room.Location <br/>
+                <b>Number of seats: </b> @Room.CoutOfSeats <br/>
+                <b>Description: </b> <p>@Room.Description</p>
+            </div>
+        }
+        else
+        {
+            <h1>Room not found.</h1>
+        }
+    </div>
+    
+    <div class="row mt-4">
+        <EditForm Model="Room" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="UpdateRoomHandler" @onreset="DeleteRoomHandler" FormName="addRoom">
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Room.Location" id="Room.Location" class="form-control" placeholder="Enter room location" />
+                <label for="Room.Location">Room Location</label>
+                <ValidationMessage For="() => Room.Location" class="text-danger" />
+            </div>
+            <div class="row">
+                <div class="form-floating md-3 mb-3 col-md-6">
+                    <InputNumber min="0" @bind-Value="Room.CoutOfSeats" id="Room.CoutOfSeats" class="form-control" placeholder="Enter count of seats" />
+                    <label for="Room.CoutOfSeats">Number of Seats</label>
+                    <ValidationMessage For="() => Room.CoutOfSeats" class="text-danger" />
+                </div>
+                <div class="form-floating md-3 mb-3 col-md-6">
+                    <InputText @bind-Value="Room.ImageUrl" id="Room.ImageUrl" class="form-control" placeholder="Enter image url"/>
+                    <label for="Room.ImageUrl">Image URL</label>
+                    <ValidationMessage For="() => Room.ImageUrl" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-floating md-12 mb-3">
+                <InputTextArea @bind-Value="Room.Description" id="Room.Description" class="form-control" style="height: 250px" placeholder="Enter description" />
+                <label for="Room.Description">Room Description</label>
+                <ValidationMessage For="() => Room.Description" class="text-danger" />
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+                <div class="col-2">
+                    <button type="reset" class="btn btn-danger" @onclick="DeleteRoomHandler">Delete</button>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string Id { get; set; }
+    
+    [Parameter]
+    [SupplyParameterFromForm]
+    public RoomDbo Room { get; set; } = new RoomDbo();
+    
+    private string? ReturnUrl { get; set; }
+    
+    private IMapper mapper = new MapperConfiguration(cfg =>
+    {
+        cfg.CreateMap<RoomDbo, Room>();
+        cfg.CreateMap<Room, RoomDbo>();
+    }, new NullLoggerFactory()).CreateMapper();
+    
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(Id))
+        {
+            Room = mapper.Map<RoomDbo>(await RoomService.GetRoomByIdAsync(Guid.Parse(Id)));
+        }
+    }
+    
+    private async Task UpdateRoomHandler()
+    {
+        
+        var result = await RoomService.UpdateRoomAsync(Room.Id, Room);
+        
+        ReturnUrl = result?.Id != null ? "/Admin/Rooms" : $"/Admin/Rooms/RoomInfo?Id={Room.Id}";
+        NavigationManager.NavigateTo(ReturnUrl);
+    }
+    
+    private async Task DeleteRoomHandler()
+    {
+        if (Id != null)
+        {
+            Console.WriteLine(Id);
+            await RoomService.DeleteRoomAsync(Guid.Parse(Id));
+        }
+        else
+        {
+            Console.WriteLine("Room.Id is null");
+        }
+        
+        ReturnUrl = "/Admin/Rooms";
+        NavigationManager.NavigateTo(ReturnUrl);
+    }
+}

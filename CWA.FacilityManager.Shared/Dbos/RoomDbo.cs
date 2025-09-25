@@ -6,7 +6,7 @@ public class RoomDbo
 
     public string Location { get; set; }
 
-    public uint CoutOfSeats { get; set; }
+    public int CoutOfSeats { get; set; }
     
     public string Description { get; set; }
     
