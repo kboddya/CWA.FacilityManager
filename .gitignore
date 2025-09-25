@@ -2,3 +2,4 @@
 .idea/
 CWA.FacilityManager.sln.DotSettings.user
 CWA.FacilityManager.Server/appsettings.json
+obj/
