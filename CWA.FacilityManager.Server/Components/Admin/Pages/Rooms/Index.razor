@@ -2,11 +2,12 @@
 @using CWA.FacilityManager.Application.Services
 @using CWA.FacilityManager.Infrastructure.Contexts
 @using CWA.FacilityManager.Server.Components.Admin.Shared
+@using Microsoft.AspNetCore.Authorization
 @layout AdminLayout
 @inject IRoomService RoomService
 @inject NavigationManager NavManager
 
-
+@attribute [Authorize(Roles = "Admin")]
 <div class="container">
     <div class="row">
         <div class="col-lg-10">

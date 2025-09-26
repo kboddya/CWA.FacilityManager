@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace CWA.FacilityManager.Infrastructure.Migrations
 {
     /// <inheritdoc />
@@ -56,7 +58,7 @@ namespace CWA.FacilityManager.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CoutOfSeats = table.Column<long>(type: "bigint", nullable: false),
+                    CoutOfSeats = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: true)
@@ -170,6 +172,15 @@ namespace CWA.FacilityManager.Infrastructure.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "1", null, "User", "USER" },
+                    { "2", null, "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

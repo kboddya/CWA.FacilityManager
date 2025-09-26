@@ -1,0 +1,25 @@
+@using CWA.FacilityManager.Infrastructure.Dbos
+<div class="row mt-4">
+    @if (Room != null)
+    {
+        <div class="col-md-8">
+            <div style="width: 100%; height: 850px;">
+                <img src="@Room.ImageUrl" style="height: 100%; width: 100%; margin-top: 10px; border-radius: 12px"/>
+            </div>
+        </div>
+        <div class="col-md-4 mt-4">
+            <b>Location: </b> @Room.Location <br/>
+            <b>Number of seats: </b> @Room.CoutOfSeats <br/>
+            <b>Description: </b> <p>@Room.Description</p>
+        </div>
+    }
+    else
+    {
+        <h1>Room not found.</h1>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public RoomDbo Room { get; set;  }
+}

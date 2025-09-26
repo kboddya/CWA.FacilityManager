@@ -2,9 +2,12 @@
 @using CWA.FacilityManager.Application.Services
 @using CWA.FacilityManager.Infrastructure.Dbos
 @using CWA.FacilityManager.Server.Components.Admin.Shared
+@using Microsoft.AspNetCore.Authorization
 @layout AdminLayout
 @inject IRoomService RoomService
 @inject NavigationManager NavManager
+@attribute [Authorize(Roles = "Admin")]
+
 <PageTitle>Add Room</PageTitle>
 <div class="container">
     <EditForm Model="Room" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="AddRoomHandler" FormName="addRoom">

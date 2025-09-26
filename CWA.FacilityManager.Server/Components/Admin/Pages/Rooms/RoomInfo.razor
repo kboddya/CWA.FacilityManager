@@ -3,32 +3,17 @@
 @using CWA.FacilityManager.Application.Services
 @using CWA.FacilityManager.Infrastructure.Dbos
 @using CWA.FacilityManager.Server.Components.Admin.Shared
+@using CWA.FacilityManager.Server.Components.Shared
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.Extensions.Logging.Abstractions
 
 @inject NavigationManager NavigationManager
-
 @inject IRoomService RoomService
+
+@attribute [Authorize(Roles = "Admin")]
 <PageTitle>@(Room != null ? Room.Location : "Room")</PageTitle>
 <div class="container">
-    <div class="row mt-4">
-        @if (Room != null)
-        {
-            <div class="col-md-8">
-                <div style="width: 100%; height: 850px;">
-                    <img src="@Room.ImageUrl" style="height: 100%; width: 100%; margin-top: 10px; border-radius: 12px"/>
-                </div>
-            </div>
-            <div class="col-md-4 mt-4">
-                <b>Location: </b> @Room.Location <br/>
-                <b>Number of seats: </b> @Room.CoutOfSeats <br/>
-                <b>Description: </b> <p>@Room.Description</p>
-            </div>
-        }
-        else
-        {
-            <h1>Room not found.</h1>
-        }
-    </div>
+    <RoomView Room="@Room"/>
     
     <div class="row mt-4">
         <EditForm Model="Room" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="UpdateRoomHandler" @onreset="DeleteRoomHandler" FormName="addRoom">
@@ -59,7 +44,7 @@
                     <button type="submit" class="btn btn-success">Update</button>
                 </div>
                 <div class="col-2">
-                    <button type="reset" class="btn btn-danger" @onclick="DeleteRoomHandler">Delete</button>
+                    <button type="button" class="btn btn-danger" @onclick="DeleteRoomHandler">Delete</button>
                 </div>
             </div>
         </EditForm>
@@ -102,6 +87,7 @@
     
     private async Task DeleteRoomHandler()
     {
+        Console.WriteLine("DeleteRoomHandler called");
         if (Id != null)
         {
             Console.WriteLine(Id);
